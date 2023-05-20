@@ -1,7 +1,6 @@
 package com.softeng.dressily.controller;
 
-import com.softeng.dressily.entity.User;
-import com.softeng.dressily.repository.UserRepository;
+import com.softeng.dressily.entity.users.User;
 import com.softeng.dressily.service.users.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
