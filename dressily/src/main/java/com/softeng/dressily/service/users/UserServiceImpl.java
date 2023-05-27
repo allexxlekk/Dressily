@@ -4,11 +4,14 @@ import com.softeng.dressily.API.request.closet.OutfitRequest;
 import com.softeng.dressily.entity.closet.Closet;
 import com.softeng.dressily.entity.closet.Clothing;
 import com.softeng.dressily.entity.closet.Outfit;
+import com.softeng.dressily.entity.post.Post;
 import com.softeng.dressily.entity.users.User;
 import com.softeng.dressily.repository.ClothingRepository;
+import com.softeng.dressily.repository.PostRepository;
 import com.softeng.dressily.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +22,7 @@ public class UserServiceImpl implements  UserService{
 
     private final UserRepository userRepository;
     private final ClothingRepository clothingRepository;
+    private final PostRepository postRepository;
 
     @Override
     public List<User> getAllUsers() {
@@ -35,7 +39,7 @@ public class UserServiceImpl implements  UserService{
         // Update existing User
         User existingUser = userRepository.findUserById(newUser.getId());
         // Update properties
-        existingUser.setName(newUser.getName());
+        existingUser.setUsername(newUser.getUsername());
 
         return userRepository.save(existingUser);
     }
@@ -44,12 +48,26 @@ public class UserServiceImpl implements  UserService{
     @Transactional
     public Closet addClothing(Long userId, Clothing newClothing) {
         User user = userRepository.findUserById(userId);
-        user.getCloset().getClothes().add(newClothing);
+        user.addClothing(newClothing);
         return userRepository.save(user).getCloset();
     }
 
     @Override
     @Transactional
+    public List<Post> addPost(Long userId, Post newPost) {
+        User user = userRepository.findUserById(userId);
+        user.addPost(newPost);
+        return userRepository.save(user).getPosts();
+    }
+
+    @Override
+    @Transactional
+    public Post likePost(Long postId) {
+        Post post = postRepository.findPostById(postId);
+        post.like();
+        return postRepository.save(post);
+    }
+
     public Closet addOutfit(Long userId, OutfitRequest outfitRequest) {
         User user = userRepository.findUserById(userId);
         Outfit newOutfit = Outfit
@@ -63,7 +81,7 @@ public class UserServiceImpl implements  UserService{
                 .map(clothingRepository::findClothingById)
                 .toList());
 
-        user.getCloset().getOutfits().add(newOutfit);
+        user.addOutfit(newOutfit);
         return userRepository.save(user).getCloset();
     }
 }
