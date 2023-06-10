@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "20e05bf2-7981-4ba6-ba45-6c30bdd94a1d",
+		"name": "Dressily",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13841182"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/dressily/users/all",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"dressily",
+								"users",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"VintageCollector\",\n    \"closet\": {\n        \"clothes\": [\n            {\n                \"name\": \"High Rise Skinny Jeans\",\n                \"brand\": \"Levi's\",\n                \"type\": \"Jeans\"\n            },\n            {\n                \"name\": \"Crewneck Sweatshirt\",\n                \"brand\": \"Champion\",\n                \"type\": \"Sweatshirt\"\n            },\n            {\n                \"name\": \"Classic White Tee\",\n                \"brand\": \"Supreme\",\n                \"type\": \"T-shirt\"\n            },\n            {\n                \"name\": \"Air Force 1 '07\",\n                \"brand\": \"Nike\",\n                \"type\": \"Shoes\"\n            }\n        ]\n    },\n    \"profile\": {\n        \"bio\": \"Collector of vintage and exclusive clothing. Fashion is not only a hobby, but also a way of life for me. Based in San Francisco.\"\n    },\n    \"posts\": [\n        {\n            \"text\": \"Found these classic Nike Air Force 1 '07 shoes today! I've been looking for these in my size for months. So excited to add them to my collection. #Nike #SneakerHead\",\n            \"timestamp\": \"23-05-22 13:45:32\",\n            \"totalLikes\": 310\n        },\n        {\n            \"text\": \"Scored a classic Champion sweatshirt from a thrift store. It's super comfortable and fits just right. #ThriftFinds #Champion\",\n            \"timestamp\": \"23-04-22 16:33:20\",\n            \"totalLikes\": 210\n        }\n    ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/dressily/users",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"dressily",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Follow user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/dressily/users/1/follow/2",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"dressily",
+								"users",
+								"1",
+								"follow",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/dressily/users/1/feed?explore=true",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"dressily",
+								"users",
+								"1",
+								"feed"
+							],
+							"query": [
+								{
+									"key": "explore",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\"hey i loved your last outfit\"",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/dressily/users/1/message/2",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"dressily",
+								"users",
+								"1",
+								"message",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Closet",
+			"item": [
+				{
+					"name": "Add Clothing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"newClothing\",\n    \"brand\": \"HnM\",\n    \"type\" : \"shirt\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/dressily/closet/1/addClothing",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"dressily",
+								"closet",
+								"1",
+								"addClothing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Outfit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"new Outfit\",\n    \"description\": \"this is the description for the new Outfit\",\n    \"clothingIdList\" : [1, 2 ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/dressily/closet/1/addOutfit",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"dressily",
+								"closet",
+								"1",
+								"addOutfit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Add Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\" : \"This is a brand new post\",\n    \"timestamp\" : \"20/3/2023\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/dressily/posts/1/addPost",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"dressily",
+								"posts",
+								"1",
+								"addPost"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like Post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCAL_URL}}/dressily/posts/1/likePost",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"dressily",
+								"posts",
+								"1",
+								"likePost"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\" : \"I have no words! Look at this though\",\n    \"outfit\": {\n        \"name\" : \"new Outfit\",\n        \"description\": \"this is the description for the new Outfit\",\n        }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL_URL}}/dressily/posts/1/comment/4",
+							"host": [
+								"{{LOCAL_URL}}"
+							],
+							"path": [
+								"dressily",
+								"posts",
+								"1",
+								"comment",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Populate the database",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"username\": \"VintageCollector\",\n        \"closet\": {\n            \"clothes\": [\n                {\n                    \"name\": \"High Rise Skinny Jeans\",\n                    \"brand\": \"Levi's\",\n                    \"type\": \"Jeans\"\n                },\n                {\n                    \"name\": \"Crewneck Sweatshirt\",\n                    \"brand\": \"Champion\",\n                    \"type\": \"Sweatshirt\"\n                },\n                {\n                    \"name\": \"Classic White Tee\",\n                    \"brand\": \"Supreme\",\n                    \"type\": \"T-shirt\"\n                },\n                {\n                    \"name\": \"Air Force 1 '07\",\n                    \"brand\": \"Nike\",\n                    \"type\": \"Shoes\"\n                }\n            ]\n        },\n        \"profile\": {\n            \"bio\": \"Collector of vintage and exclusive clothing. Fashion is not only a hobby, but also a way of life for me. Based in San Francisco.\"\n        },\n        \"posts\": [\n            {\n                \"text\": \"Found these classic Nike Air Force 1 '07 shoes today! I've been looking for these in my size for months. So excited to add them to my collection. #Nike #SneakerHead\",\n                \"timestamp\": \"23-05-22 13:45:32\",\n                \"totalLikes\": 310\n            },\n            {\n                \"text\": \"Scored a classic Champion sweatshirt from a thrift store. It's super comfortable and fits just right. #ThriftFinds #Champion\",\n                \"timestamp\": \"23-04-22 16:33:20\",\n                \"totalLikes\": 210\n            }\n        ]\n    },\n    {\n        \"username\": \"FashionForwardAmy\",\n        \"closet\": {\n            \"clothes\": [\n                {\n                    \"name\": \"Faux Leather Jacket\",\n                    \"brand\": \"Zara\",\n                    \"type\": \"Jacket\"\n                },\n                {\n                    \"name\": \"Floral Summer Dress\",\n                    \"brand\": \"H&M\",\n                    \"type\": \"Dress\"\n                },\n                {\n                    \"name\": \"Ankle Strap Heels\",\n                    \"brand\": \"Steve Madden\",\n                    \"type\": \"Shoes\"\n                }\n            ]\n        },\n        \"profile\": {\n            \"bio\": \"Fashion lover, trying to stay ahead of the trends. Love mixing high-end pieces with affordable finds. New York based.\"\n        },\n        \"posts\": [\n            {\n                \"text\": \"My new faux leather jacket from Zara is a game changer. It's perfect for the chilly spring nights. #Zara #OOTD\",\n                \"timestamp\": \"23-05-10 19:15:48\",\n                \"totalLikes\": 105\n            },\n            {\n                \"text\": \"My favorite floral dress is back in rotation now that spring has sprung! #HM #SpringFashion\",\n                \"timestamp\": \"23-04-21 10:24:16\",\n                \"totalLikes\": 235\n            }\n        ]\n    },\n    {\n        \"username\": \"Sneakerhead101\",\n        \"closet\": {\n            \"clothes\": [\n                {\n                    \"name\": \"Yeezy Boost 350 V2\",\n                    \"brand\": \"Adidas\",\n                    \"type\": \"Shoes\"\n                },\n                {\n                    \"name\": \"Jumpman Classics Pullover Hoodie\",\n                    \"brand\": \"Jordan\",\n                    \"type\": \"Hoodie\"\n                },\n                {\n                    \"name\": \"Logo Mesh Shorts\",\n                    \"brand\": \"Supreme\",\n                    \"type\": \"Shorts\"\n                }\n            ]\n        },\n        \"profile\": {\n            \"bio\": \"Sneaker enthusiast sharing my collection and journey. Also a big fan of basketball and hip-hop culture. Los Angeles based.\"\n        },\n        \"posts\": [\n            {\n                \"text\": \"Copped the new Yeezy Boost 350 V2 today. The comfort and style are unbeatable. #Adidas #Yeezy\",\n                \"timestamp\": \"23-05-22 14:30:27\",\n                \"totalLikes\": 350\n            },\n            {\n                \"text\": \"Loving this new Jordan hoodie. It's perfect for the cooler nights. #Jordan #OOTN\",\n                \"timestamp\": \"23-05-18 22:47:53\",\n                \"totalLikes\": 290\n            }\n        ]\n    },\n    {\n        \"username\":\"TravelingTony\",\n        \"closet\": {\n            \"clothes\": [\n                {\n                    \"name\": \"Safari Jacket\",\n                    \"brand\": \"Columbia\",\n                    \"type\": \"Jacket\"\n                },\n                {\n                    \"name\": \"Cargo Shorts\",\n                    \"brand\": \"North Face\",\n                    \"type\": \"Shorts\"\n                },\n                {\n                    \"name\": \"Hiking Boots\",\n                    \"brand\": \"Timberland\",\n                    \"type\": \"Shoes\"\n                }\n            ]\n        },\n        \"profile\": {\n            \"bio\" : \"Adventurous spirit with a love for nature and exploring new places. Sharing my travel outfits and experiences.\"\n        },\n        \"posts\": [\n            {\n                \"text\" : \"Just got a new safari jacket from Columbia, can't wait to test it out on my next adventure! #Columbia #Travel\",\n                \"timestamp\" : \"23-05-05 14:30:20\",\n                \"totalLikes\" : 85\n            }\n        ]\n    },\n    {\n        \"username\":\"DenimDebbie\",\n        \"closet\": {\n            \"clothes\": [\n                {\n                    \"name\": \"Skinny Jeans\",\n                    \"brand\": \"Levi's\",\n                    \"type\": \"Jean\"\n                },\n                {\n                    \"name\": \"Jean Jacket\",\n                    \"brand\": \"Gap\",\n                    \"type\": \"Jacket\"\n                },\n                {\n                    \"name\": \"Denim Skirt\",\n                    \"brand\": \"American Eagle\",\n                    \"type\": \"Skirt\"\n                }\n            ]\n        },\n        \"profile\": {\n            \"bio\" : \"Denim lover, you'll find me in jeans and a denim jacket. Sharing my favorite denim pieces and outfits.\"\n        },\n        \"posts\": [\n            {\n                \"text\" : \"Loving these new skinny jeans from Levi's, they fit like a glove! #Levi's #Denim\",\n                \"timestamp\" : \"23-04-28 11:15:00\",\n                \"totalLikes\" : 110\n            }\n        ]\n    },\n    {\n        \"username\":\"BeachBumBrad\",\n        \"closet\": {\n            \"clothes\": [\n                {\n                    \"name\": \"Swim Trunks\",\n                    \"brand\": \"Hurley\",\n                    \"type\": \"Swimwear\"\n                },\n                {\n                    \"name\": \"Sandals\",\n                    \"brand\": \"Reef\",\n                    \"type\": \"Shoes\"\n                },\n                {\n                    \"name\": \"Sunglasses\",\n                    \"brand\": \"Oakley\",\n                    \"type\": \"Accessory\"\n                }\n            ]\n        },\n        \"profile\": {\n            \"bio\" : \"Living the beach life. Sharing my favorite beachwear and accessories.\"\n        },\n        \"posts\": [\n            {\n                \"text\" : \"These new swim trunks from Hurley are perfect for a day at the beach. #Hurley #Beach\",\n                \"timestamp\" : \"23-05-18 10:30:10\",\n                \"totalLikes\" : 95\n            }\n        ]\n    },\n    {\n        \"username\":\"EcoElise\",\n        \"closet\": {\n            \"clothes\": [\n                {\n                    \"name\": \"Organic Cotton Dress\",\n                    \"brand\": \"People Tree\",\n                    \"type\": \"Dress\"\n                },\n                {\n                    \"name\": \"Vegan Leather Boots\",\n                    \"brand\": \"Matt & Nat\",\n                    \"type\": \"Shoes\"\n                },\n                {\n                    \"name\": \"Recycled Denim Jeans\",\n                    \"brand\": \"Everlane\",\n                    \"type\": \"Jean\"\n                }\n            ]\n        },\n        \"profile\": {\n            \"bio\" : \"Sharing my journey towards a more sustainable wardrobe. Love supporting eco-friendly brands!\"\n        },\n        \"posts\": [\n            {\n                \"text\" : \"Just bought a new organic cotton dress from People Tree, love their commitment to sustainable fashion. #PeopleTree #SustainableFashion\",\n                \"timestamp\" : \"23-05-22 13:00:45\",\n                \"totalLikes\" : 180\n            }\n        ]\n    },\n    {\n        \"username\":\"FashionistaFaye\",\n        \"closet\": {\n            \"clothes\": [\n                {\n                    \"name\": \"Ruffle Dress\",\n                    \"brand\": \"Zimmermann\",\n                    \"type\": \"Dress\"\n                },\n                {\n                    \"name\": \"Strappy Heels\",\n                    \"brand\": \"Manolo Blahnik\",\n                    \"type\": \"Shoes\"\n                },\n                {\n                    \"name\": \"Tote Bag\",\n                    \"brand\": \"Prada\",\n                    \"type\": \"Bag\"\n                }\n            ]\n        },\n        \"profile\": {\n            \"bio\" : \"Fashion is my passion. Here to share my outfits and love for designer pieces.\"\n        },\n        \"posts\": [\n            {\n                \"text\" : \"Feeling fabulous in my new Zimmermann dress. #Zimmermann #OOTD\",\n                \"timestamp\" : \"23-05-22 20:00:15\",\n                \"totalLikes\" : 305\n            }\n        ]\n    },\n    {\n        \"username\":\"VintageVince\",\n        \"closet\": {\n            \"clothes\": [\n                {\n                    \"name\": \"Vintage Leather Jacket\",\n                    \"brand\": \"Thrifted\",\n                    \"type\": \"Jacket\"\n                },\n                {\n                    \"name\": \"High-Waisted Jeans\",\n                    \"brand\": \"Levi's\",\n                    \"type\": \"Jean\"\n                },\n                {\n                    \"name\": \"Retro Sneakers\",\n                    \"brand\": \"Converse\",\n                    \"type\": \"Shoes\"\n                }\n            ]\n        },\n        \"profile\": {\n            \"bio\" : \"Vintage clothing enthusiast. Sharing my thrifted finds and how I style them.\"\n        },\n        \"posts\": [\n            {\n                \"text\" : \"Scored this amazing vintage leather jacket at a local thrift store. #Thrifted #VintageFashion\",\n                \"timestamp\" : \"23-05-18 14:30:10\",\n                \"totalLikes\" : 180\n            }\n        ]\n    },            \n    {\n        \"username\":\"MinimalistMila\",\n        \"closet\": {\n            \"clothes\": [\n                {\n                    \"name\": \"Basic White Tee\",\n                    \"brand\": \"Uniqlo\",\n                    \"type\": \"Shirt\"\n                },\n                {\n                    \"name\": \"Black Skinny Jeans\",\n                    \"brand\": \"Madewell\",\n                    \"type\": \"Jean\"\n                },\n                {\n                    \"name\": \"White Sneakers\",\n                    \"brand\": \"Common Projects\",\n                    \"type\": \"Shoes\"\n                }\n            ]\n        },\n        \"profile\": {\n            \"bio\" : \"Embracing minimalism one outfit at a time. Sharing my simple, chic, and versatile looks.\"\n        },\n        \"posts\": [\n            {\n                \"text\" : \"You can never go wrong with a basic white tee and black skinny jeans. #Minimalist #OOTD\",\n                \"timestamp\" : \"23-05-10 11:15:30\",\n                \"totalLikes\" : 275\n            }\n        ]\n    }         \n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{LOCAL_URL}}/dressily/users/populate",
+					"host": [
+						"{{LOCAL_URL}}"
+					],
+					"path": [
+						"dressily",
+						"users",
+						"populate"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "LOCAL_URL",
+			"value": "localhost:8080"
+		}
+	]
+}
