@@ -1,5 +1,6 @@
 package com.softeng.dressily.entity.users;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.softeng.dressily.entity.closet.Closet;
 import com.softeng.dressily.entity.closet.Clothing;
 import com.softeng.dressily.entity.closet.Outfit;
@@ -35,18 +36,19 @@ public class User {
     private Closet closet;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Connection connection;
+    @JsonIgnore
+    private Connection connection = new Connection();
 
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
     private Profile profile;
 
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
     private Feed feed;
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Chat> inbox = new ArrayList<>();
 
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
     private ExploreFeed exploreFeed;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -72,5 +74,9 @@ public class User {
 
     public void acceptFollow(User user){
         connection.getFollowers().add(user);
+    }
+
+    public void newNotification(Notification notification){
+        notifications.add(notification);
     }
 }

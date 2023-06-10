@@ -5,8 +5,8 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter
 @Setter
 @SuperBuilder(toBuilder = true)
@@ -23,6 +23,7 @@ public class Notification {
     private String type;
 
     @ManyToOne()
+    @JsonIgnore
     private User fromUser;
 
 

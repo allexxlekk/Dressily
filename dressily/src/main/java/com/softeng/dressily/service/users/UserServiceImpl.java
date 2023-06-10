@@ -4,7 +4,10 @@ import com.softeng.dressily.API.request.closet.OutfitRequest;
 import com.softeng.dressily.entity.closet.Closet;
 import com.softeng.dressily.entity.closet.Clothing;
 import com.softeng.dressily.entity.closet.Outfit;
+import com.softeng.dressily.entity.messages.Chat;
+import com.softeng.dressily.entity.post.Comment;
 import com.softeng.dressily.entity.post.Post;
+import com.softeng.dressily.entity.users.Notification;
 import com.softeng.dressily.entity.users.User;
 import com.softeng.dressily.repository.ClothingRepository;
 import com.softeng.dressily.repository.PostRepository;
@@ -14,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -83,5 +87,60 @@ public class UserServiceImpl implements  UserService{
 
         user.addOutfit(newOutfit);
         return userRepository.save(user).getCloset();
+    }
+
+    @Override
+    @Transactional
+    public void followUser(Long userId, Long followingId) {
+        User user = userRepository.findUserById(userId);
+        User following = userRepository.findUserById(followingId);
+
+        user.follow(following);
+        following.acceptFollow(user);
+        following.newNotification(
+                new Notification()
+                        .toBuilder()
+                        .type("follow")
+                        .content(user.getUsername() +" started following you")
+                        .build()
+        );
+
+        userRepository.save(user);
+        userRepository.save(following);
+    }
+
+    @Override
+    public List<Post> feed(Long userId, Boolean explore) {
+        List<Post> posts = new ArrayList<>();
+        List<User> users = new ArrayList<>();
+        if(explore)
+            users = userRepository.findAll();
+        else
+            users = userRepository.findUserById(userId).getConnection().getFollowing();
+        for(User u : users)
+            posts.addAll(u.getPosts());
+        return posts;
+    }
+
+    @Override
+    @Transactional
+    public Post commentPost(Long userId, Long postID, Comment newComment) {
+        Post post = postRepository.findPostById(postID);
+        newComment.setAuthor(userRepository.findUserById(userId).getUsername());
+        post.getComments().add(newComment);
+        return postRepository.save(post);
+    }
+
+    @Override
+    @Transactional
+    public void message(Long userID, Long toUserId, String message) {
+        Notification messageNotification = new Notification()
+                .toBuilder()
+                .type("follow")
+                .content(userRepository.findUserById(userID).getUsername() +": " + message)
+                .build();
+        User toUser = userRepository.findUserById(toUserId);
+        toUser.getNotifications().add(messageNotification);
+        userRepository.save(toUser);
     }
 }

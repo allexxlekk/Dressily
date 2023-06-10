@@ -1,5 +1,7 @@
 package com.softeng.dressily.controller;
 
+import com.softeng.dressily.entity.messages.Chat;
+import com.softeng.dressily.entity.post.Post;
 import com.softeng.dressily.entity.users.User;
 import com.softeng.dressily.service.users.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,4 +28,23 @@ public class UsersController {
         return userService.createUser(newUser);
     }
 
+    @PostMapping("/populate")
+    public List<User> createManyUsers(@RequestBody List<User> newUsers){
+        return newUsers.stream().map(userService::createUser).toList();
+    }
+
+    @GetMapping("{userID}/follow/{followingID}")
+    public void followUser(@PathVariable Long userID, @PathVariable Long followingID){
+        userService.followUser(userID, followingID);
+    }
+
+    @GetMapping("{userID}/feed")
+    public List<Post> getFeed(@PathVariable Long userID, @RequestParam Boolean explore){
+        return userService.feed(userID, explore);
+    }
+
+    @PostMapping("{fromUserID}/message/{toUserID}")
+    public void message(@PathVariable Long fromUserID, @PathVariable Long toUserID, @RequestBody String message){
+         userService.message(fromUserID, toUserID, message);
+    }
 }

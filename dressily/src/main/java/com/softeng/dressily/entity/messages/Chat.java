@@ -22,8 +22,7 @@ public class Chat {
     @JsonIgnore
     private Long id;
 
-    @OneToOne()
-    private User fromUser;
+    private String fromUser;
 
     private String chatName;
 

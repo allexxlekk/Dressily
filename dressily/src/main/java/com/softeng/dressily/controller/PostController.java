@@ -1,5 +1,6 @@
 package com.softeng.dressily.controller;
 
+import com.softeng.dressily.entity.post.Comment;
 import com.softeng.dressily.entity.post.Post;
 import com.softeng.dressily.service.users.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,10 @@ public class PostController {
     @PostMapping("/{userId}/addPost")
     public List<Post> addPost(@PathVariable Long userId, @RequestBody Post newPost){
         return userService.addPost(userId, newPost);
+    }
+    @PostMapping("/{userId}/comment/{postId}")
+    public Post addPost(@PathVariable Long userId,@PathVariable Long postId, @RequestBody Comment newComment){
+        return userService.commentPost(userId, postId, newComment);
     }
     @GetMapping("/{postId}/likePost")
     public Post likePost(@PathVariable Long postId){
